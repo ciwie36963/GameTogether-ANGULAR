@@ -1,0 +1,49 @@
+<div *ngIf='errorMsg' class="ui error message">{{errorMsg}}</div>
+<form [formGroup]='user' (ngSubmit)='onSubmit()' class="ui large form segment w40centered" id="loginForm">
+  <div class="ui one column middle aligned very relaxed stackable grid">
+    <div class="center aligned column">
+      <h3 class="ui header">Register</h3>
+      <div class="ui form">
+        <div class="field">
+          <label for="username">Username:</label>
+          <div class="ui left icon input">
+            <input type="text" id="username" formControlName='username' data-test="username">
+            <i class="user icon"></i>
+          </div>
+          <div class='ui pointing red basic label' *ngIf=' user.get("username").errors?.required && user.get("username").touched'>
+            a username is required
+          </div>
+          <div class='ui pointing red basic label' *ngIf='user.get("username").errors?.minlength && user.get("username").touched'>
+            the username should be at least {{user.get("username").errors?.minlength.requiredLength }} letters
+          </div>
+          <div class='ui pointing red basic label' *ngIf='user.get("username").errors?.userAlreadyExists && user.get("username").touched'>
+            a user with that name already exists
+          </div>
+        </div>
+        <div formGroupName='passwordGroup'>
+          <div class="field">
+            <label for="password">Password:</label>
+            <div class="ui left icon input">
+              <input type="password" id="password" formControlName='password' data-test="password">
+              <i class="lock icon"></i>
+            </div>
+            <div class='ui pointing red basic label' *ngIf=' passwordControl.errors?.passwordTooShort && passwordControl.touched'>
+              password too short, please use at least {{passwordControl.errors?.passwordTooShort.requiredLength}} letters (got {{passwordControl.errors?.passwordTooShort.actualLength}})
+            </div>
+          </div>
+          <div class="field">
+            <label for="confirmpassword">Confirm Password:</label>
+            <div class="ui left icon input">
+              <input type="password" id="confirmpassword" formControlName='confirmPassword' data-test="confirmPassword">
+              <i class="lock icon"></i>
+            </div>
+          </div>
+          <div class='ui pointing red basic label' *ngIf=' user.get("passwordGroup").errors?.passwordsDiffer && user.get("passwordGroup").get("confirmPassword").touched  && user.get("passwordGroup").get("password").touched'>
+            the two passwords should be the same
+          </div>
+        </div>
+        <button type='submit' [disabled]='!user.valid' class="ui positive right button btnFixRegister" data-test="registerBtn">Register</button>
+      </div>
+    </div>
+  </div>
+</form>

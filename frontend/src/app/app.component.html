@@ -1,0 +1,18 @@
+<div class="ui container">
+  <div class="ui secondary pointing menu">
+      <img class="logo" src="../assets/images/goedLogo.png" alt="logo">
+    <a class='item verzetten' routerLinkActive='active' routerLink="player/list">Players</a>
+
+    <a class='item verzetten' routerLinkActive='active' routerLink="player/add">Add Listing</a>
+    <div class="right menu btnLoginFixContainer">
+      <a *ngIf='(currentUser | async) else loginlink' class="ui item btnLoginFix" routerLinkActive='active' routerLink="/logout">{{currentUser|async}}</a>
+    </div>
+
+    <ng-template #loginlink>
+      <div class="right menu btnLoginFixContainer">
+        <button class="ui item btnLoginFix" routerLinkActive='active' routerLink="/login">Log In</button>
+      </div>
+    </ng-template>
+  </div>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,27 @@
+<div class="ui card" id="detailFix">
+    <div class="image">
+    <img src="../../../assets/images/Gold.png" alt="lol">
+  </div>
+  <div *ngIf='errorMsg' class="ui error message">{{errorMsg}}</div>
+  <div class="content">
+    <a class="header">detailed player for {{ player.name }}</a>
+    <div class="meta">
+      <span class="date">added on {{player.dateAdded | date}}</span>
+    </div>
+    <ul class="ui list">
+      <li *ngFor='let gam of player.games'>
+        <app-game [game]='gam'></app-game>
+      </li>
+    </ul>
+    <ul class="ui list">
+      <li *ngFor='let div of player.divisions'>
+        <app-division [division]='div'></app-division>
+      </li>
+    </ul>
+    <ul class="ui list">
+      <li *ngFor='let vc of player.voiceChats'>
+        <app-voice-chat [voiceChat]='vc'></app-voice-chat>
+      </li>
+    </ul>
+  </div>
+</div>

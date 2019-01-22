@@ -1,0 +1,31 @@
+<div class="ui card" id="loginForm2">
+  <div class="image">
+    <img src="../../../assets/images/person.png" alt="person">
+     <!-- <div [innerHTML]='\<img src="../../../assets/images/silver.png" alt="lol">'></div> -->
+  </div>
+  <div class="content">
+    <a class="header" href='/player/{{player.id}}'>{{ player.name }}</a>
+    <div class="meta">
+      <span class="date">This player has been added on {{player.dateAdded | date}} by {{ player.chef }}</span>
+    </div>
+    <ul class="ui list">
+      <li *ngFor='let gam of player.games'>
+        <app-game [game]='gam'></app-game>
+      </li>
+    </ul>
+    <ul class="ui list">
+      <li *ngFor='let div of player.divisions'>
+        <app-division [division]='div'></app-division>
+      </li>
+    </ul>
+    <ul class="ui list">
+      <li *ngFor='let vc of player.voiceChats'>
+        <app-voice-chat [voiceChat]='vc'></app-voice-chat>
+      </li>
+    </ul>
+    <button class="ui icon button" (click)="removePlayer()" data-test="removePlayerBtn">
+      <i class="trash outline icon"></i>
+      Remove
+    </button>
+  </div>
+</div>

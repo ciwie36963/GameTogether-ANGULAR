@@ -1,0 +1,90 @@
+<div class="ui large form segment w40centered" id="loginForm">
+  <div *ngIf='errorMsg' class="ui error message">{{errorMsg}}</div>
+  <form class="ui form" [formGroup]='player' (ngSubmit)='onSubmit()'>
+    <h4 class="ui dividing header">Add listing</h4>
+    <div class="field">
+      <label for="name_id">Ingame Username</label>
+      <input id="name" name="name_id" formControlName='name' data-test="playerName">
+      <div *ngIf='player.get("name").errors?.required && player.get("name").touched' class='ui pointing red basic label'>
+        a player must have a name of at least 2 characters long
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="game_name">Game</label>
+      <div formArrayName='games' *ngFor='let item of games.controls; 
+          let i = index'>
+        <div [formGroupName]='i'>
+          <div class='three fields'>
+            <div class="field">
+              <input type="text" id="game_amount" placeholder="Which version" formControlName='gameAmount' data-test="gameAmount">
+            </div>
+            <div class="field">
+              <select class='ui fluid dropdown' id="game_unittype" formControlName='gameUnit' data-test="gameUnit">
+                <option *ngFor='let type of gameUnitTypes' [value]='type'>
+                  {{type}}
+                </option>
+              </select>
+            </div>
+            <div class="field">
+              <input type="text" id="game_name" formControlName='gamename' placeholder="Name server" data-test="gameName">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="division_name">Division</label>
+      <div formArrayName='divisions' *ngFor='let item of divisions.controls; 
+          let i = index'>
+        <div [formGroupName]='i'>
+          <div class='three fields'>
+            <div class="field">
+              <input type="text" id="division_amount" placeholder="Which division" formControlName='divAmount' data-test="divAmount">
+            </div>
+            <div class="field">
+              <select class='ui fluid dropdown' id="division_unittype" formControlName='divUnit' data-test="divUnit">
+                <option *ngFor='let type of divisionUnitTypes' [value]='type'>
+                  {{type}}
+                </option>
+              </select>
+            </div>
+            <div class="field">
+              <input type="text" id="division_name" placeholder="Name division" formControlName='divisionname' data-test="divName">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="voiceChat_name">Voicechat</label>
+      <div formArrayName='voiceChats' *ngFor='let item of voiceChats.controls; 
+          let i = index'>
+        <div [formGroupName]='i'>
+          <div class='three fields'>
+            <div class="field">
+              <input type="text" id="voiceChat_amount" placeholder="Starting hour online" formControlName='vcAmount' data-test="vcAmount">
+            </div>
+            <div class="field">
+              <select class='ui fluid dropdown' id="voiceChat_unittype" formControlName='vcUnit' data-test="vcUnit">
+                <option *ngFor='let type of voiceChatUnitTypes' [value]='type'>
+                  {{type}}
+                </option>
+              </select>
+            </div>
+            <div class="field">
+              <input type="text" id="voiceChat_name" placeholder="Name server" formControlName='voiceChatname' data-test="vcName">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <button type='submit' class="ui primary button" data-test="addPlayerBtn">
+      Add my listing
+    </button>
+  </form>
+</div>

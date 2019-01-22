@@ -1,0 +1,45 @@
+<div *ngIf='errorMsg' class="ui error message">{{errorMsg}}</div>
+
+
+<form [formGroup]='user' (ngSubmit)='onSubmit()' class="ui large form segment w80centered" id="loginForm">
+  <div class="ui three column middle aligned very relaxed stackable grid">
+    <div class="center aligned column">
+      <div class="ui form">
+        <h3 class="ui header">Log in</h3>
+        <div class="field">
+          <label for="username">Username:</label>
+          <div class="ui left icon input">
+            <input type="text" id="username" formControlName='username' data-test="username">
+            <i class="user icon"></i>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password:</label>
+          <div class="ui left icon input">
+            <input type="password" id="password" formControlName='password' data-test="password">
+            <i class="lock icon"></i>
+          </div>
+        </div>
+        <button type='submit' [disabled]='!user.valid' class="ui blue submit button" id='loginbtn' data-test="loginBtn">Log in</button>
+      </div>
+    </div>
+
+    <div class="center aligned column">
+        <div class="ui vertical divider">
+          Or
+        </div>
+      </div>
+
+    <div class="center aligned column">
+      <div routerLink="/register" class="ui big green labeled icon button">
+        <i class="signup icon"></i>
+        <a class='item wit'>Sign Up</a>
+      </div>
+    </div>
+
+  </div>
+</form>
+
+
+

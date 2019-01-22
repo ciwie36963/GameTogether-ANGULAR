@@ -1,0 +1,36 @@
+{
+    "name": "playerapp",
+    "version": "1.0.0",
+    "description": "Player app",
+    "homepage": "https://github.com/Web-IV/web4-20172018-2b12c1-gent-ciwie36963",
+    "scripts": {
+        "start": "node server",
+        "deploy-backend": "git subtree push --prefix backend playerapp-backend master",
+        "build-frontend": "cd frontend && ng build --prod",
+        "commit-build-changes": "git add . && git commit -m 'chore(build): build files'",
+        "deploy-frontend": "npm run build-frontend && npm run copy && npm run commit-build-changes && git subtree push --prefix serve-frontend playerapp-frontend master",
+        "copy": "cpx 'frontend/dist/**' serve-frontend/www"
+    },
+    "author": {
+        "name": "Alexander Willems",
+        "email": "alexander.willems.y9744@student.hogent.be",
+        "web": "https://github.com/ciwie36963"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:Web-IV/web4-20172018-2b12c1-gent-ciwie36963.git"
+    },
+    "engines": {
+        "node": ">=6.0.0"
+    },
+    "dependencies": {
+        "connect": "^3.6.5",
+        "cors": "^2.8.4",
+        "serve-static": "^1.13.1"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "copyfiles": "^2.0.0",
+        "cpx": "^1.5.0"
+    }
+}
